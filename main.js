@@ -17,8 +17,7 @@ const stone = new THREE.TextureLoader().load('public/textures/stone.png');
 
 const geometry = new THREE.BoxGeometry(1, 1, 1);
 const geometry2 = new THREE.BoxGeometry(1, 1, 1);
-const geometry3 = new THREE.SphereGeometry(2, 32, 16);
-
+const tri = new THREE.Triangle(1, 1, 1);
 // define texture materials
 
 const dirtM = new THREE.MeshBasicMaterial({map:dirt});
@@ -27,18 +26,19 @@ const stoneM = new THREE.MeshBasicMaterial({map:stone});
 
 const cube = new THREE.Mesh(geometry, dirtM);
 const cube2 = new THREE.Mesh(geometry2, stoneM);
-const sphere = new THREE.Mesh(geometry3, dirtM);
+const triangle = new THREE.Mesh(tri, dirtM);
 
 // add meshes
 
 scene.add(cube);
 scene.add(cube2);
-
+scene.add(triangle);
 // pre position
 
 camera.position.z = 5;
 cube2.position.x = 6;
 cube.position.x = -6;
+triangle.position.x = 0;
 // animate
 
 function animate() {
