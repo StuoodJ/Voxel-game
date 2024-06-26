@@ -13,37 +13,25 @@ document.body.appendChild(renderer.domElement);
 
 const dirt = new THREE.TextureLoader().load('public/textures/dirt.png');
 const stone = new THREE.TextureLoader().load('public/textures/stone.png');
-// define geometries
+// function create cube mesh
+function createcubemesh(name, xg, yg, zg, geometry, texture, material) {
+    const geometry = new THREE.BoxGeometry(xg, yg, zg);
+    const material = new THREE.MeshBasicMaterial({map:texture});
+    name = new THREE.Mesh(geometry, material);
+    scene.add(name);
+}
+// meshes
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const geometry2 = new THREE.BoxGeometry(1, 1, 1);
-const geometry3 = new THREE.SphereGeometry(2, 32, 16);
-
-// define texture materials
-
-const dirtM = new THREE.MeshBasicMaterial({map:dirt});
-const stoneM = new THREE.MeshBasicMaterial({map:stone});
-// define meshes
-
-const cube = new THREE.Mesh(geometry, dirtM);
-const cube2 = new THREE.Mesh(geometry2, stoneM);
-const sphere = new THREE.Mesh(geometry3, dirtM);
-
-// add meshes
-
-scene.add(cube);
-scene.add(cube2);
+createcubemesh(cube, 1, 1, 1, geometry1, dirt, dirtM)
 
 // pre position
 
 camera.position.z = 5;
-cube2.position.x = 6;
-cube.position.x = -6;
+
+cube.position.x = 0;
 // animate
 
 function animate() {
-    cube2.rotateX(0.01);
-    cube2.rotateY(0.01);
     cube.rotateX(-0.02);
     cube.rotateY(-0.02);
 	renderer.render(scene, camera);
