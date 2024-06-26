@@ -11,18 +11,22 @@ document.body.appendChild(renderer.domElement);
 
 // define textures
 
-const dirt = new THREE.TextureLoader().load('public/textures/dirt.png');
-const stone = new THREE.TextureLoader().load('public/textures/stone.png');
+const dirt = new THREE.TextureLoader().load('textures/dirt.png');
+const stone = new THREE.TextureLoader().load('textures/stone.png');
+
+
+
+const dirtM = new THREE.MeshBasicMaterial({map:dirt});
+
 // function create cube mesh
-function createcubemesh(name, xg, yg, zg, geometry, texture, material) {
+function createcubemesh(xg, yg, zg, material) {
     const geometry = new THREE.BoxGeometry(xg, yg, zg);
-    const material = new THREE.MeshBasicMaterial({map:texture});
-    name = new THREE.Mesh(geometry, material);
-    scene.add(name);
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 }
 // meshes
 
-createcubemesh(cube, 1, 1, 1, geometry1, dirt, dirtM)
+createcubemesh(1, 1, 1, dirtM);
 
 // pre position
 
