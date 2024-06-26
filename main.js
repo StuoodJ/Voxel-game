@@ -38,6 +38,7 @@ scene.add(cylinder);
 camera.position.z = 5;
 cube2.position.x = 6;
 cube.position.x = -6;
+cylinder.rotation.x = 0.5;
 // animate
 
 function animate() {
@@ -45,6 +46,7 @@ function animate() {
     cube2.rotateY(0.01);
     cube.rotateX(-0.02);
     cube.rotateY(-0.02);
+    cylinder.rotateY(-0.02);
 	renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
