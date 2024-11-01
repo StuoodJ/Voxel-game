@@ -12,38 +12,43 @@ document.body.appendChild(renderer.domElement);
 
 // define textures
 
-const dirt = new THREE.TextureLoader().load('public/textures/dirt.png');
-const stone = new THREE.TextureLoader().load('public/textures/stone.png');
+const dirt = new THREE.TextureLoader().load('/textures/dirt.png');
+const stone = new THREE.TextureLoader().load('/textures/stone.png');
 // define geometries
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry1 = new THREE.BoxGeometry(1, 1, 1);
 
-const f = new THREE.CylinderGeometry(2, 2, 4, 32, 1, false, -90, Math.PI * 2);
 // define texture materials
 
 const dirtM = new THREE.MeshBasicMaterial({map:dirt});
 const stoneM = new THREE.MeshBasicMaterial({map:stone});
-// define meshes
 
-const cube = new THREE.BoxGeometry(1, 1 , 1);
+// Render Functions
+const cubes = [new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM),
+               new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM),
+               new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM),
+               new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM),
+               new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM), new THREE.Mesh(geometry1, dirtM)
+];
 
+for (let r = 0; r < 5; r++) {
+    for (let i = 0; i < 5; i++) {
+        scene.add(cubes[i]);
+        cubes[i].position.x = i;
+    }
+    scene.add(cubes[r]);
+    cubes[r].position.y = r;
+}
 // add meshes
 
-scene.add(cube);
 
 // pre position
 
 camera.position.z = 5;
-cube.position.x = -6;
-
+camera.position.y = 1;
 // animate
 
 function animate() {
-    cube2.rotateX(0.01);
-    cube2.rotateY(0.01);
-    cube.rotateX(-0.02);
-    cube.rotateY(-0.02);
-    cylinder.rotateY(-0.02);
 	renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
